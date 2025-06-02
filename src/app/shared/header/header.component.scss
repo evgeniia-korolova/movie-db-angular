@@ -1,0 +1,37 @@
+.header {
+  max-width: 100vw;
+  width: 100%;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #03095f;
+  color: white;  
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  
+    a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.5rem;
+  
+      img {
+        height: 32px; 
+        display: block;
+      }
+    }
+  }
+  
+  .auth-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: #fff;
+  }

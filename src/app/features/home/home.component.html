@@ -1,0 +1,58 @@
+<h2>Trending</h2>
+<div class="slider">
+  <div class="slider-track">
+    
+        @for (movie of trendingMovies; track $index) {
+        <div class="movie-card">
+          <img
+            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+            alt="{{ movie.title }}"
+          />
+          <h3>{{ movie.title }}</h3>
+        </div>
+        }
+      
+  </div>
+</div>
+<h2>What's Popular</h2>
+<div class="slider">
+  <div class="slider-track">
+    @for (movie of popularMovies; track $index) {
+    <div class="movie-card">
+      <img
+        [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+        alt="{{ movie.title }}"
+      />
+      <h3>{{ movie.title }}</h3>
+    </div>
+    }
+  </div>
+</div>
+<h2>Latest Trailers</h2>
+<div class="slider">
+  <div class="slider-track">
+    @for (movie of latestTrailers; track $index) {
+    <div class="movie-card">
+      <img
+        [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+        alt="{{ movie.title }}"
+      />
+      <h3>{{ movie.title }}</h3>
+    </div>
+    }
+  </div>
+</div>
+<h2>Free To Watch</h2>
+<div class="slider">
+  <div class="slider-track">
+    @for (movie of freeToWatch; track $index) {
+    <div class="movie-card">
+      <img
+        [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+        alt="{{ movie.title }}"
+      />
+      <h3>{{ movie.title }}</h3>
+    </div>
+    }
+  </div>
+</div>
