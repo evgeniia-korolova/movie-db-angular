@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "movie-db-ang": {
+    "movie-db-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/movie-db-ang",
+            "outputPath": "dist/movie-db-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "movie-db-ang:build:production"
+              "buildTarget": "movie-db-angular:build:production"
             },
             "development": {
-              "buildTarget": "movie-db-ang:build:development"
+              "buildTarget": "movie-db-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
