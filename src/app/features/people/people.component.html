@@ -6,10 +6,7 @@
     />
     <h3>{{ person.name }}</h3>
     <div class="people__movies">
-      <span *ngFor="let movie of person.known_for; let i = index">
-        {{ movie.title || movie.original_title }}
-        <span *ngIf="i < person.known_for.length - 1">, </span>
-      </span>
+        <span>{{ getMovieTitles(person) }}</span>
     </div>
   </div>
 </div>

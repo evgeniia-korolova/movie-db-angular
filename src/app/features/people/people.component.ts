@@ -23,7 +23,15 @@ export class PeopleComponent implements OnInit {
     this.peopleService.getPeople(this.currentPage).subscribe((data) => {
       this.people = data.results;
       this.totalPages = data.total_pages;
+      console.log(this.people);
+      
     });
+  }
+
+  getMovieTitles(person: any): string {
+    return person.known_for
+      .map((m: any) => m.title || m.original_title || m.original_name)
+      .join(', ');
   }
 
   nextPage(): void {

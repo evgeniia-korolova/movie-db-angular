@@ -34,6 +34,10 @@
     .people__movies {
       display: flex;
       flex-wrap: wrap;
+
+      p {
+        margin-right: 8px;
+      }
     }
   }
 }
