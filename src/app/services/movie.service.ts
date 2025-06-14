@@ -6,8 +6,7 @@ import { environment } from '../../environments/environments';
 @Injectable({
   providedIn: 'root',
 })
-export class MovieService {
-  // private apiUrl = `${environment.BASE_URL}//movie/now_playing`;
+export class MovieService {  
   private baseUrl = environment.BASE_URL;
   private apiKey = environment.API_KEY;
 

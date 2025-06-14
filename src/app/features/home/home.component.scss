@@ -1,34 +1,128 @@
 .slider {
-  overflow-x: hidden;
+  overflow-x: auto;
   white-space: nowrap;
   position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: #cac8c8 #f1f1f1;
+}
+.slider::-webkit-scrollbar {
+  height: 2.5rem;
+}
+
+.slider::-webkit-scrollbar-thumb {
+  background: #e9e7e7;
+  border-radius: 5px;
+}
+
+.slider::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
 .slider-track {
   display: flex;
   gap: 15px;
+  padding-block-end: 1rem;
 }
 
 .movie-card {
-  width: 200px;
-  max-width: 200px;
+  width: 150px;
+  max-width: 150px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
   flex-shrink: 0;
+  position: relative;
+
+  .movie-card__poster {
+    position: relative;
+
+    .vote-average {
+      position: absolute;
+      bottom: -20px;
+      left: 20px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .vote-container {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      bottom: -20px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #000;
+
+      .vote-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12px;
+        font-weight: bold;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+
+        span {
+          font-size: 8px;
+          vertical-align: top;
+          // margin-left: -2px;
+
+        }
+      }
+    }
+  }
 }
 
 .movie-card img {
   width: 100%;
-  height: 300px;
+  height: 225px;
   object-fit: cover;
   border-radius: 10px;
   border: 1px solid rgb(200, 197, 197);
 }
 
-.movie-card h3 {
-  max-width: 100%;
-  word-wrap: break-word;
-  white-space: normal;
-  text-overflow: ellipsis;
+.movie-card__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+
+  h3 {
+    margin: 0;
+  }
+
+  h3:first-child {
+    max-width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+    text-overflow: ellipsis;
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+  h3:last-child {
+    margin-top: auto;
+    font-weight: 400;
+    margin-top: 1rem;
+  }
+}
+
+.high-rating {
+  background-color: #4caf50; /* Зеленый */
+}
+
+.medium-rating {
+  background-color: #ffeb3b; /* Желтый */
+}
+
+.low-rating {
+  background-color: #f44336; /* Красный */
 }

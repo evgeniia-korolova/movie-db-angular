@@ -1,1 +1,41 @@
-<p>people works!</p>
+<div class="people__list">
+  <div *ngFor="let person of people" class="people__card">
+    <img
+      [src]="'https://image.tmdb.org/t/p/w500' + person.profile_path"
+      alt="{{ person.name }}"
+    />
+    <h3>{{ person.name }}</h3>
+    <div class="people__movies">
+      <span *ngFor="let movie of person.known_for; let i = index">
+        {{ movie.title || movie.original_title }}
+        <span *ngIf="i < person.known_for.length - 1">, </span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="currentPage === 1">
+    ← Previous
+  </button>
+
+  <ng-container *ngFor="let page of getPageNumbers(); let i = index">
+    <button
+      *ngIf="page !== '...'; else dots"
+      (click)="goToPage(page)"
+      [class.active]="page === currentPage"
+    >
+      {{ page }}
+    </button>
+    <ng-template #dots>
+      <span class="dots">...</span>
+    </ng-template>
+  </ng-container>
+
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+    Next →
+  </button>
+</div>
+
+<!-- <button (click)="prevPage()" [disabled]="currentPage === 1">← Previous</button>
+<button (click)="nextPage()">Next →</button> -->
