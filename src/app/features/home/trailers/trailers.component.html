@@ -1,0 +1,39 @@
+<section class="trailers">
+  <div class="trailers__header">
+    <h2>Latest Trailers</h2>
+    <div class="category-toggle toggle-trailers">
+      @for (category of categories; track $index) {
+      <button
+        class="trailer-btn"
+        [class.active]="activeCategory === category.value"
+        (click)="loadMovies(category.value)"
+      >
+        <span>{{ category.label| titlecase }}</span>
+      </button>
+      }
+    </div>
+  </div>
+  <div class="slider">
+    <div class="slider-track">
+      @for (movie of latestTrailers; track $index) {
+      <div class="movie-card">
+        <div class="movie-card__poster">
+          <img
+            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+            alt="{{ movie.title }}"
+          />
+          @if (movie.trailerKey) {
+          <button class="play-btn" (click)="openTrailer(movie.trailerKey)">
+            <img  src="/icon-play.png" alt="play" class="play-btn__icon">
+          </button>
+          }
+        </div>
+        <div class="movie-card__info">
+          <h3>{{ movie.title }}</h3>
+          <h3>{{ movie.release_date }}</h3>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

@@ -97,15 +97,16 @@ section {
 
         span {
           font-size: 8px;
-          vertical-align: top;
-          // margin-left: -2px;
+          vertical-align: top;          
         }
+
+       
       }
     }
   }
 }
 
-.movie-card img {
+.movie-card img:not(.play-btn__icon) {
   width: 100%;
   height: 225px;
   object-fit: cover;
@@ -139,15 +140,15 @@ section {
 }
 
 .high-rating {
-  background-color: #4caf50; /* Зеленый */
+  background-color: #4caf50;
 }
 
 .medium-rating {
-  background-color: #ffeb3b; /* Желтый */
+  background-color: #ffeb3b; 
 }
 
 .low-rating {
-  background-color: #f44336; /* Красный */
+  background-color: #f44336; 
 }
 
 .category-toggle {

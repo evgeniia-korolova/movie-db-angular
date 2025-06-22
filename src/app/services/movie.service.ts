@@ -19,12 +19,7 @@ export class MovieService {
     return this.http.get<any>(url);
   }
 
-  // !!!!
-  getLatestTrailers(): Observable<any> {
-    return this.http.get<any>(
-      `${this.baseUrl}/movie/upcoming?api_key=${this.apiKey}`
-    );
-  }
+ 
 
   getPopularMovies(): Observable<any> {
     return this.http.get<any>(
@@ -91,8 +86,8 @@ export class MovieService {
     return this.http.get<any>(url);
   }
   
-  getMovieTrailer(movieId: number): Observable<any> {
-    const url = `${this.baseUrl}/movie/${movieId}/videos?api_key=${this.apiKey}`;
-    return this.http.get<any>(url);
-  }
+  // getMovieTrailer(movieId: number): Observable<any> {
+  //   const url = `${this.baseUrl}/movie/${movieId}/videos?api_key=${this.apiKey}`;
+  //   return this.http.get<any>(url);
+  // }
 }

@@ -67,39 +67,8 @@
   </div>
 </section>
 
-<section class="trailers">
-  <div class="trailers__header">
-    <h2>Latest Trailers</h2>
-    <div class="category-toggle toggle-trailers">
-      @for (category of categoriesTrailers; track $index) {
-        <button class="trailer-btn"
-          [class.active]="selectedCategoryTrailer === category.value"
-          (click)="loadTrailers(category.value)"
-        >
-          <span>{{ category.label }}</span>
-        </button>
-        }
-    </div>
-  </div>
-  <div class="slider">
-    <div class="slider-track">
-      @for (movie of latestTrailers; track $index) {
-      <div class="movie-card">
-        <div class="movie-card__poster">
-          <img
-            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-            alt="{{ movie.title }}"
-          />
-        </div>
-        <div class="movie-card__info">
-          <h3>{{ movie.title }}</h3>
-          <h3>{{ movie.release_date }}</h3>
-        </div>
-      </div>
-      }
-    </div>
-  </div>
-</section>
+<app-trailers></app-trailers>
+
 
 <section class="popular">
   <div class="popular__header">
