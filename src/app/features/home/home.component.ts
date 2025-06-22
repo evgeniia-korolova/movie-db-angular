@@ -16,10 +16,19 @@ export class HomeComponent implements OnInit {
   freeToWatch: any[] = [];
 
   selectedCategory = 'streaming';
+  selectedCategoryTrailer = 'popular';
   
   selectedTime: 'day' | 'week' = 'day';
 
   categories = [
+    { label: 'Streaming', value: 'streaming' },
+    { label: 'On TV', value: 'on-tv' },
+    { label: 'For Rent', value: 'for-rent' },
+    { label: 'In Theaters', value: 'in-theaters' },
+  ];
+
+  categoriesTrailers = [
+    {label: 'Popular', value: 'popular'},
     { label: 'Streaming', value: 'streaming' },
     { label: 'On TV', value: 'on-tv' },
     { label: 'For Rent', value: 'for-rent' },
@@ -59,15 +68,32 @@ export class HomeComponent implements OnInit {
     this.loadTrending();
   }
 
+  loadTrailers(category: string = 'popular') {
+    this.movieService.getMoviesByCategory(category).subscribe((data) => {
+      this.latestTrailers = data.results;
+      this.selectedCategoryTrailer = category;
+  
+      // загружаем трейлеры для первых 10 фильмов
+      this.latestTrailers.forEach((movie: any) => {
+        this.movieService.getMovieTrailer(movie.id).subscribe((videoData) => {
+          const trailer = videoData.results.find(
+            (v: any) => v.type === 'Trailer' && v.site === 'YouTube'
+          );
+          movie.trailerKey = trailer?.key;
+        });
+      });
+    });
+  }
+
   ngOnInit() {
    
     this.loadTrending();
 
-    this.movieService.getLatestTrailers().subscribe((data) => {
-      this.latestTrailers = data.results;
-    });
+    // this.movieService.getLatestTrailers().subscribe((data) => {
+    //   this.latestTrailers = data.results;
+    // });
 
-    
+    this.loadTrailers('popular')
 
     this.loadPopularMovies('streaming');
 

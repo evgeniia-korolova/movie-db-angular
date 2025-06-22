@@ -46,7 +46,9 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/movie-db-angular/",
+              "deployUrl": "/movie-db-angular/"
             },
             "development": {
               "optimization": false,

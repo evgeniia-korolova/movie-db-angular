@@ -2,12 +2,16 @@ section {
   padding: 10px 20px;
 
   &.trending {
-    background-image: url("trending-bg.svg");
+    background-image: url("/trending-bg.svg");
     background-position: bottom center;
     background-size: 200% 60%;
     background-repeat: no-repeat;
-  }  
+  }
 
+  &.trailers {
+    background: linear-gradient(to right, rgba(50, 152, 235, 0.75) 0%,
+      rgba(4, 48, 84, 0.75) 100% );
+  }
 }
 
 .slider {
@@ -16,8 +20,6 @@ section {
   position: relative;
   scrollbar-width: thin;
   scrollbar-color: #cac8c8 #f1f1f1;
-
-
 }
 .slider::-webkit-scrollbar {
   height: 2.5rem;
@@ -32,15 +34,15 @@ section {
   background: #f1f1f1;
 }
 
-
-
 .slider-track {
   display: flex;
   gap: 15px;
   padding-block-end: 1rem;
 }
 
-.popular__header, .trending__header {
+.popular__header,
+.trending__header,
+.trailers__header {
   display: flex;
   align-items: center;
   gap: 30px;
@@ -153,6 +155,10 @@ section {
   border: 1px solid black;
   border-radius: 25px;
 
+  &.toggle-trailers {
+    border: 1px solid rgb(70, 229, 70);
+  }
+
   button {
     background-color: transparent;
     border: none;
@@ -160,7 +166,12 @@ section {
     cursor: pointer;
     padding: 0.5rem 1.5rem;
     border-radius: 25px;
-    transition: all 0.5s ease;
+    transition: all 0.5s ease-out;
+
+    &.trailer-btn {
+      color:#fff; 
+      transition: all 0.5s ease-out;     
+    }
 
     &.active {
       background-color: black;
@@ -174,6 +185,8 @@ section {
       }
     }
   }
+  .trailer-btn.active {
+    color: black;
+    background: linear-gradient(to right, #c0fecf, #1ed5a9);
+  }
 }
-
-
