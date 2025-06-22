@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { DecimalPipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,15 @@ export class HomeComponent implements OnInit {
   latestTrailers: any[] = [];
   popularMovies: any[] = [];
   freeToWatch: any[] = [];
+
+  selectedCategory = 'streaming';
+
+  categories = [
+    { label: 'Streaming', value: 'streaming' },
+    { label: 'On TV', value: 'on-tv' },
+    { label: 'For Rent', value: 'for-rent' },
+    { label: 'In Theaters', value: 'in-theaters' },
+  ];
 
   constructor(private movieService: MovieService) {}
 
@@ -27,8 +37,13 @@ export class HomeComponent implements OnInit {
     const percentage = Math.round(vote * 10);
     return 251.2 - (percentage / 100) * 251.2;
   }
-  
-  
+
+  loadPopularMovies(category: string): void {
+    this.selectedCategory = category;
+    this.movieService.getPopularByCategory(category).subscribe((data) => {
+      this.popularMovies = data.results;
+    });
+  }
 
   ngOnInit() {
     this.movieService.getTrendingMovies().subscribe((data) => {
@@ -40,9 +55,11 @@ export class HomeComponent implements OnInit {
       this.latestTrailers = data.results;
     });
 
-    this.movieService.getPopularMovies().subscribe((data) => {
-      this.popularMovies = data.results;
-    });
+    // this.movieService.getPopularMovies().subscribe((data) => {
+    //   this.popularMovies = data.results;
+    // });
+
+    this.loadPopularMovies('streaming');
 
     this.movieService.getFreeToWatch().subscribe((data) => {
       this.freeToWatch = data.results;

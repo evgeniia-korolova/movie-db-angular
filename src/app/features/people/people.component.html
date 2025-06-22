@@ -1,9 +1,13 @@
 <div class="people__list">
   <div *ngFor="let person of people" class="people__card">
-    <img
-      [src]="'https://image.tmdb.org/t/p/w500' + person.profile_path"
-      alt="{{ person.name }}"
-    />
+    @if (person.profile_path) {
+      <img
+        [src]="'https://image.tmdb.org/t/p/w500' + person.profile_path"
+        alt="{{ person.name }}"
+      />
+    } @else {
+      <img src="user-profile-img.svg" alt="{{ person.name }}">
+    }
     <h3>{{ person.name }}</h3>
     <div class="people__movies">
         <span>{{ getMovieTitles(person) }}</span>

@@ -24,6 +24,12 @@
   padding-block-end: 1rem;
 }
 
+.popular__header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
 .movie-card {
   width: 150px;
   max-width: 150px;
@@ -75,7 +81,6 @@
           font-size: 8px;
           vertical-align: top;
           // margin-left: -2px;
-
         }
       }
     }
@@ -105,13 +110,13 @@
     word-wrap: break-word;
     white-space: normal;
     text-overflow: ellipsis;
-    font-size: 1.3rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 600;
   }
   h3:last-child {
     margin-top: auto;
     font-weight: 400;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
   }
 }
 
@@ -125,4 +130,32 @@
 
 .low-rating {
   background-color: #f44336; /* Красный */
+}
+
+.category-toggle {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 25px;
+
+  button {
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    transition: all 0.5s ease;
+
+    &.active {
+      background-color: black;
+
+      .gradient-text {
+        background-image: linear-gradient(to right, #c0fecf, #1ed5a9);
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
 }
