@@ -20,6 +20,11 @@ export class MovieService {
     );
   }
 
+  getTrending(mediaType: 'movie', timeWindow: 'day' | 'week'): Observable<any> {
+    const url = `${this.baseUrl}/trending/${mediaType}/${timeWindow}?api_key=${this.apiKey}`;
+    return this.http.get<any>(url);
+  }
+
   getLatestTrailers(): Observable<any> {
     return this.http.get<any>(
       `${this.baseUrl}/movie/upcoming?api_key=${this.apiKey}`

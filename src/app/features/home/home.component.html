@@ -1,51 +1,94 @@
 <section class="trending">
-  <h2>Trending</h2>
-<div class="slider">
-  <div class="slider-track">
-    @for (movie of trendingMovies; track $index) {
-    <div class="movie-card">
-      <div class="movie-card__poster">
-        <img
-          [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-          alt="{{ movie.title }}"
-        />
-        <div class="vote-container">
-          <svg width="50" height="50" viewBox="0 0 100 100">
-            <circle
-              cx="50"
-              cy="50"
-              r="40"
-              stroke="#ddd"
-              stroke-width="8"
-              fill="none"
-            />
-            <circle
-              cx="50"
-              cy="50"
-              r="40"
-              [attr.stroke]="getVoteColor(movie.vote_average)"
-              stroke-width="8"
-              fill="none"
-              stroke-dasharray="251.2"
-              [attr.stroke-dashoffset]="getStrokeOffset(movie.vote_average)"
-              transform="rotate(-90 50 50)"
-            />
-          </svg>
-          <span class="vote-text"
-            >{{ movie.vote_average * 10 | number : "1.0-0" }}
-            <span>%</span></span
-          >
+  <div class="trending__header">
+    <h2>Trending</h2>
+
+    
+      <div class="category-toggle">
+        <button
+          (click)="onTimeChange('day')"
+          [class.active]="selectedTime === 'day'"
+        >          
+          <span class="gradient-text">Today</span>
+        </button>
+        <button
+          (click)="onTimeChange('week')"
+          [class.active]="selectedTime === 'week'"
+        >          
+          <span class="gradient-text">This Week</span>
+        </button>
+      </div>
+    
+  </div>
+
+  <div class="slider slider__trending">
+    <div class="slider-track">
+      @for (movie of trendingMovies; track $index) {
+      <div class="movie-card">
+        <div class="movie-card__poster">
+          <img
+            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+            alt="{{ movie.title || movie.name }}"
+          />
+          <div class="vote-container">
+            <svg width="50" height="50" viewBox="0 0 100 100">
+              <circle
+                cx="50"
+                cy="50"
+                r="40"
+                stroke="#ddd"
+                stroke-width="8"
+                fill="none"
+              />
+              <circle
+                cx="50"
+                cy="50"
+                r="40"
+                [attr.stroke]="getVoteColor(movie.vote_average)"
+                stroke-width="8"
+                fill="none"
+                stroke-dasharray="251.2"
+                [attr.stroke-dashoffset]="getStrokeOffset(movie.vote_average)"
+                transform="rotate(-90 50 50)"
+              />
+            </svg>
+            <span class="vote-text"
+              >{{ movie.vote_average * 10 | number : "1.0-0" }}
+              <span>%</span></span
+            >
+          </div>
+        </div>
+        <div class="movie-card__info">
+          <h3>{{ movie.title || movie.name }}</h3>
+          <h3>{{ movie.release_date }}</h3>
         </div>
       </div>
-      <div class="movie-card__info">
-        <h3>{{ movie.title }}</h3>
-        <h3>{{ movie.release_date }}</h3>
-      </div>
+      }
     </div>
-    }
   </div>
-</div>
 </section>
+
+<section class="trailers">
+  <h2>Latest Trailers</h2>
+  <div class="slider">
+    <div class="slider-track">
+      @for (movie of latestTrailers; track $index) {
+      <div class="movie-card">
+        <div class="movie-card__poster">
+          <img
+            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+            alt="{{ movie.title }}"
+          />
+        </div>
+        <div class="movie-card__info">
+          <h3>{{ movie.title }}</h3>
+          <h3>{{ movie.release_date }}</h3>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+
 <section class="popular">
   <div class="popular__header">
     <h2>What's Popular</h2>
@@ -106,29 +149,6 @@
       }
     </div>
   </div>
-</section>
-
-<section class="trailers">
-  <h2>Latest Trailers</h2>
-  <div class="slider">
-    <div class="slider-track">
-      @for (movie of latestTrailers; track $index) {
-      <div class="movie-card">
-        <div class="movie-card__poster">
-          <img
-            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-            alt="{{ movie.title }}"
-          />
-        </div>
-        <div class="movie-card__info">
-          <h3>{{ movie.title }}</h3>
-          <h3>{{ movie.release_date }}</h3>
-        </div>
-      </div>
-      }
-    </div>
-  </div>
-
 </section>
 
 <section class="free-to-watch">

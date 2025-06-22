@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit {
   freeToWatch: any[] = [];
 
   selectedCategory = 'streaming';
+  
+  selectedTime: 'day' | 'week' = 'day';
 
   categories = [
     { label: 'Streaming', value: 'streaming' },
@@ -45,19 +47,27 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.movieService.getTrendingMovies().subscribe((data) => {
+
+  loadTrending(): void {
+    this.movieService.getTrending('movie', this.selectedTime).subscribe((data) => {
       this.trendingMovies = data.results;
-      console.log(data.results);
     });
+  }
+  
+  onTimeChange(time: 'day' | 'week') {
+    this.selectedTime = time;
+    this.loadTrending();
+  }
+
+  ngOnInit() {
+   
+    this.loadTrending();
 
     this.movieService.getLatestTrailers().subscribe((data) => {
       this.latestTrailers = data.results;
     });
 
-    // this.movieService.getPopularMovies().subscribe((data) => {
-    //   this.popularMovies = data.results;
-    // });
+    
 
     this.loadPopularMovies('streaming');
 
