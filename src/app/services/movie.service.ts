@@ -14,56 +14,12 @@ export class MovieService {
 
   constructor(private http: HttpClient) {} 
 
-  getTrending(mediaType: 'movie', timeWindow: 'day' | 'week'): Observable<any> {
-    const url = `${this.baseUrl}/trending/${mediaType}/${timeWindow}?api_key=${this.apiKey}`;
-    return this.http.get<any>(url);
-  }
-
- 
-
-  getPopularMovies(): Observable<any> {
-    return this.http.get<any>(
-      `${this.baseUrl}/movie/popular?api_key=${this.apiKey}`
-    );
-  }
-
-  getFreeToWatch(): Observable<any> {
+   getFreeToWatch(): Observable<any> {
     return this.http.get<any>(
       `${this.baseUrl}/movie/top_rated?api_key=${this.apiKey}`
     );
   }
 
-  getPopularByCategory(category: string): Observable<any> {
-    let url = '';
-    let params = '';
-  
-    switch (category) {
-      case 'streaming':
-        url = `${this.baseUrl}/discover/movie?api_key=${this.apiKey}`;
-        params = '&with_watch_providers=8&watch_region=US';
-        break;
-  
-      case 'on-tv':
-        url = `${this.baseUrl}/discover/tv?api_key=${this.apiKey}`;
-        params = '&with_watch_providers=9&watch_region=US';
-        break;
-  
-      case 'for-rent':
-        url = `${this.baseUrl}/discover/movie?api_key=${this.apiKey}`;
-        params = '&with_release_type=3';
-        break;
-  
-      case 'in-theaters':
-        url = `${this.baseUrl}/discover/movie?api_key=${this.apiKey}`;
-        params = '&with_release_type=2';
-        break;
-  
-      default:
-        url = `${this.baseUrl}/discover/movie?api_key=${this.apiKey}`;
-    }
-  
-    return this.http.get<any>(url + params);
-  }
 
   getMoviesByCategory(category: string): Observable<any> {
     let url = `${this.baseUrl}/discover/movie?api_key=${this.apiKey}`;
@@ -86,8 +42,5 @@ export class MovieService {
     return this.http.get<any>(url);
   }
   
-  // getMovieTrailer(movieId: number): Observable<any> {
-  //   const url = `${this.baseUrl}/movie/${movieId}/videos?api_key=${this.apiKey}`;
-  //   return this.http.get<any>(url);
-  // }
+ 
 }

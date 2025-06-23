@@ -1,20 +1,18 @@
-import { DecimalPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../../../services/movie.service';
 import { RatingBadgeComponent } from '../../../shared/rating-badge/rating-badge.component';
+import { TrendingMoviesService } from '../../../services/trending-movies.service';
 
 @Component({
   selector: 'app-trending',
   imports: [RatingBadgeComponent],
   templateUrl: './trending.component.html',
-  styleUrls: ['./trending.component.scss', '../home.component.scss']
+  styleUrls: ['./trending.component.scss', '../home.component.scss'],
 })
-export class TrendingComponent implements OnInit{
+export class TrendingComponent implements OnInit {
   trendingMovies: any[] = [];
   selectedTime: 'day' | 'week' = 'day';
-  
 
-  constructor(private movieService: MovieService) {}
+  constructor(private trendingMoviesService: TrendingMoviesService) {}
 
   getVoteColor(vote: number): string {
     const percentage = Math.round(vote * 10);
@@ -34,13 +32,14 @@ export class TrendingComponent implements OnInit{
   }
 
   loadTrending(): void {
-    this.movieService.getTrending('movie', this.selectedTime).subscribe((data) => {
-      this.trendingMovies = data.results;
-    });
+    this.trendingMoviesService
+      .getTrending('movie', this.selectedTime)
+      .subscribe((data) => {
+        this.trendingMovies = data.results;
+      });
   }
 
   ngOnInit(): void {
-    this.loadTrending(); 
+    this.loadTrending();
   }
-
 }
