@@ -1,1 +1,43 @@
-<p>trending works!</p>
+<section class="trending">
+    <div class="trending__header">
+      <h2>Trending</h2>
+  
+      
+        <div class="category-toggle">
+          <button
+            (click)="onTimeChange('day')"
+            [class.active]="selectedTime === 'day'"
+          >          
+            <span class="gradient-text">Today</span>
+          </button>
+          <button
+            (click)="onTimeChange('week')"
+            [class.active]="selectedTime === 'week'"
+          >          
+            <span class="gradient-text">This Week</span>
+          </button>
+        </div>
+      
+    </div>
+  
+    <div class="slider slider__trending">
+      <div class="slider-track">
+        @for (movie of trendingMovies; track $index) {
+        <div class="movie-card">
+          <div class="movie-card__poster">
+            <img
+              [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+              alt="{{ movie.title || movie.name }}"
+            />
+           
+            <app-rating-badge [voteAverage]="movie.vote_average"></app-rating-badge>
+          </div>
+          <div class="movie-card__info">
+            <h3>{{ movie.title || movie.name }}</h3>
+            <h3>{{ movie.release_date }}</h3>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>

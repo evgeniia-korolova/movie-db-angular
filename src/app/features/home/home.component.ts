@@ -3,23 +3,21 @@ import { MovieService } from '../../services/movie.service';
 import { DecimalPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { TrailersComponent } from './trailers/trailers.component';
+import { TrendingComponent } from './trending/trending.component';
 
 @Component({
   selector: 'app-home',
-  imports: [DecimalPipe, TrailersComponent],
+  imports: [DecimalPipe, TrailersComponent, TrendingComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
-  trendingMovies: any[] = [];
-  latestTrailers: any[] = [];
+export class HomeComponent implements OnInit {    
   popularMovies: any[] = [];
   freeToWatch: any[] = [];
 
   selectedCategory = 'streaming';
-  selectedCategoryTrailer = 'popular';
+  selectedCategoryTrailer = 'popular'; 
   
-  selectedTime: 'day' | 'week' = 'day';
 
   categories = [
     { label: 'Streaming', value: 'streaming' },
@@ -27,7 +25,6 @@ export class HomeComponent implements OnInit {
     { label: 'For Rent', value: 'for-rent' },
     { label: 'In Theaters', value: 'in-theaters' },
   ];
-
  
 
   constructor(private movieService: MovieService) {}
@@ -50,24 +47,9 @@ export class HomeComponent implements OnInit {
       this.popularMovies = data.results;
     });
   }
-
-
-  loadTrending(): void {
-    this.movieService.getTrending('movie', this.selectedTime).subscribe((data) => {
-      this.trendingMovies = data.results;
-    });
-  }
-  
-  onTimeChange(time: 'day' | 'week') {
-    this.selectedTime = time;
-    this.loadTrending();
-  }
-
  
 
-  ngOnInit() {
-   
-    this.loadTrending();    
+  ngOnInit() {      
 
     this.loadPopularMovies('streaming');
 

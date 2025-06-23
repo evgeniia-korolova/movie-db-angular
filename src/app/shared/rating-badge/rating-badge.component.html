@@ -1,0 +1,27 @@
+<div class="vote-container">
+    <svg width="50" height="50" viewBox="0 0 100 100">
+      <circle
+        cx="50"
+        cy="50"
+        r="40"
+        stroke="#ddd"
+        stroke-width="8"
+        fill="none"
+      />
+      <circle
+        cx="50"
+        cy="50"
+        r="40"
+        [attr.stroke]="getVoteColor()"
+        stroke-width="8"
+        fill="none"
+        stroke-dasharray="251.2"
+        [attr.stroke-dashoffset]="getStrokeOffset()"
+        transform="rotate(-90 50 50)"
+      />
+    </svg>
+    <span class="vote-text"
+      >{{ voteAverage * 10 | number : "1.0-0" }}
+      <span>%</span></span
+    >
+  </div>
