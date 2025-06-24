@@ -1,37 +1,48 @@
-  
-  .person__card {
-    flex: 1 1 clamp(220px, 25%, 300px);
+.person__card {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: background 0.2s ease-in-out;
+  height: 100%;
+  min-height: 400px;
+
+  &:hover {
+    background: #fcf0f0;
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+}
+
+.person__info {
+  padding: 8px 12px;
+
+  h3 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.8rem;
+  }
+
+  .known-for {
     display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    flex-wrap: wrap;
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3; // максимум 2 строки
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    padding: 16px;
-    transition: background 0.2s ease-in-out;
+    text-overflow: ellipsis;
 
-    &:hover {      
-      background: #fcf0f0;
-    }
-
-    img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-    }
-
-    h3 {
-      margin: 12px 0 8px;
-      font-size: 1.1rem;
-      color: #333;
-    }
-
-    .known-for {
-      display: flex;
-      flex-wrap: wrap;    
-
-      p {
-        margin-right: 8px;
-      }
+    span {
+      font-size: 1rem;
     }
   }
+}

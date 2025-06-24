@@ -13,6 +13,6 @@ export class PersonCardComponent {
   getProfileImage(): string {
     return this.person.profile_path
       ? `https://image.tmdb.org/t/p/w300${this.person.profile_path}`
-      : '/user-profile-img.svg';
+      : 'user-profile-img.svg';
   }
 }
