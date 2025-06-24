@@ -14,17 +14,17 @@ export class TrendingComponent implements OnInit {
 
   constructor(private trendingMoviesService: TrendingMoviesService) {}
 
-  getVoteColor(vote: number): string {
-    const percentage = Math.round(vote * 10);
-    if (percentage >= 75) return '#4caf50';
-    if (percentage >= 50) return '#ffeb3b';
-    return '#f44336';
-  }
+  // getVoteColor(vote: number): string {
+  //   const percentage = Math.round(vote * 10);
+  //   if (percentage >= 75) return '#4caf50';
+  //   if (percentage >= 50) return '#ffeb3b';
+  //   return '#f44336';
+  // }
 
-  getStrokeOffset(vote: number): number {
-    const percentage = Math.round(vote * 10);
-    return 251.2 - (percentage / 100) * 251.2;
-  }
+  // getStrokeOffset(vote: number): number {
+  //   const percentage = Math.round(vote * 10);
+  //   return 251.2 - (percentage / 100) * 251.2;
+  // }
 
   onTimeChange(time: 'day' | 'week') {
     this.selectedTime = time;

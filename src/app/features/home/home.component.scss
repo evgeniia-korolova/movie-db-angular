@@ -9,8 +9,11 @@ section {
   }
 
   &.trailers {
-    background: linear-gradient(to right, rgba(50, 152, 235, 0.75) 0%,
-      rgba(4, 48, 84, 0.75) 100% );
+    background: linear-gradient(
+      to right,
+      rgba(50, 152, 235, 0.75) 0%,
+      rgba(4, 48, 84, 0.75) 100%
+    );
   }
 }
 
@@ -42,7 +45,8 @@ section {
 
 .popular__header,
 .trending__header,
-.trailers__header {
+.trailers__header,
+.free-to-watch__header {
   display: flex;
   align-items: center;
   gap: 30px;
@@ -71,37 +75,6 @@ section {
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    .vote-container {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      bottom: -20px;
-      left: 20px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: #000;
-
-      .vote-text {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 12px;
-        font-weight: bold;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-
-        span {
-          font-size: 8px;
-          vertical-align: top;          
-        }
-
-       
-      }
     }
   }
 }
@@ -144,11 +117,11 @@ section {
 }
 
 .medium-rating {
-  background-color: #ffeb3b; 
+  background-color: #ffeb3b;
 }
 
 .low-rating {
-  background-color: #f44336; 
+  background-color: #f44336;
 }
 
 .category-toggle {
@@ -170,8 +143,8 @@ section {
     transition: all 0.5s ease-out;
 
     &.trailer-btn {
-      color:#fff; 
-      transition: all 0.5s ease-out;     
+      color: #fff;
+      transition: all 0.5s ease-out;
     }
 
     &.active {
