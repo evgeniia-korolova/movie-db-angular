@@ -1,42 +1,31 @@
-<div class="people__list">
-  <div *ngFor="let person of people" class="people__card">
-    @if (person.profile_path) {
-      <img
-        [src]="'https://image.tmdb.org/t/p/w500' + person.profile_path"
-        alt="{{ person.name }}"
-      />
-    } @else {
-      <img src="user-profile-img.svg" alt="{{ person.name }}">
+<section>
+  <div class="people__list" >
+    @for (person of people; track $index) {
+    <app-person-card [person]="person" [routerLink]="['/person', person.id]"></app-person-card>
     }
-    <h3>{{ person.name }}</h3>
-    <div class="people__movies">
-        <span>{{ getMovieTitles(person) }}</span>
-    </div>
   </div>
-</div>
 
-<div class="pagination">
-  <button (click)="prevPage()" [disabled]="currentPage === 1">
-    ← Previous
-  </button>
-
-  <ng-container *ngFor="let page of getPageNumbers(); let i = index">
-    <button
-      *ngIf="page !== '...'; else dots"
-      (click)="goToPage(page)"
-      [class.active]="page === currentPage"
-    >
-      {{ page }}
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">
+      ← Previous
     </button>
-    <ng-template #dots>
-      <span class="dots">...</span>
-    </ng-template>
-  </ng-container>
 
-  <button (click)="nextPage()" [disabled]="currentPage === totalPages">
-    Next →
-  </button>
-</div>
+    <ng-container *ngFor="let page of getPageNumbers(); let i = index">
+      <button
+        *ngIf="page !== '...'; else dots"
+        (click)="goToPage(page)"
+        [class.active]="page === currentPage"
+      >
+        {{ page }}
+      </button>
+      <ng-template #dots>
+        <span class="dots">...</span>
+      </ng-template>
+    </ng-container>
 
-<!-- <button (click)="prevPage()" [disabled]="currentPage === 1">← Previous</button>
-<button (click)="nextPage()">Next →</button> -->
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next →
+    </button>
+  </div>
+</section>
+<router-outlet></router-outlet>

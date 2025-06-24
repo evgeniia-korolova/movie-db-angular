@@ -9,11 +9,8 @@ section {
   }
 
   &.trailers {
-    background: linear-gradient(
-      to right,
-      rgba(50, 152, 235, 0.75) 0%,
-      rgba(4, 48, 84, 0.75) 100%
-    );
+    background: linear-gradient(to right, rgba(50, 152, 235, 0.75) 0%,
+      rgba(4, 48, 84, 0.75) 100% );
   }
 }
 
@@ -76,6 +73,7 @@ section {
       justify-content: center;
       align-items: center;
     }
+  
   }
 }
 
@@ -117,11 +115,11 @@ section {
 }
 
 .medium-rating {
-  background-color: #ffeb3b;
+  background-color: #ffeb3b; 
 }
 
 .low-rating {
-  background-color: #f44336;
+  background-color: #f44336; 
 }
 
 .category-toggle {
@@ -143,8 +141,8 @@ section {
     transition: all 0.5s ease-out;
 
     &.trailer-btn {
-      color: #fff;
-      transition: all 0.5s ease-out;
+      color:#fff; 
+      transition: all 0.5s ease-out;     
     }
 
     &.active {

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../../services/movie.service';
-import { DecimalPipe } from '@angular/common';
 import { TrailersComponent } from './trailers/trailers.component';
 import { TrendingComponent } from './trending/trending.component';
 import { PopularMoviesComponent } from './popular/popular.component';

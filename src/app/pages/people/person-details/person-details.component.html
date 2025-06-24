@@ -1,0 +1,21 @@
+<section class="person-details" >
+    @if (person) {
+        <img
+      class="person-photo"
+      [src]="
+        person.profile_path
+          ? 'https://image.tmdb.org/t/p/w500' + person.profile_path
+          : '/placeholder-profile.jpg'
+      "
+      [alt]="person.name"
+    />
+  
+    <div class="info">
+      <h2>{{ person.name }}</h2>
+      <p class="subtle">Born: {{ person.birthday || 'Unknown' }}</p>
+      <p class="subtle">From: {{ person.place_of_birth || 'Unknown' }}</p>
+      <p class="bio">{{ person.biography || 'No biography available.' }}</p>
+    </div>
+    }
+    
+  </section>

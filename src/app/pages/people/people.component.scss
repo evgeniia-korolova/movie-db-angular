@@ -3,43 +3,7 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 24px;
   padding: 20px;
-
-  .people__card {
-    flex: 1 1 clamp(220px, 25%, 300px);
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    padding: 16px;
-    transition: background 0.2s ease-in-out;
-
-    &:hover {      
-      background: #fcf0f0;
-    }
-
-    img {
-      width: 100%;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-    }
-
-    h3 {
-      margin: 12px 0 8px;
-      font-size: 1.1rem;
-      color: #333;
-    }
-
-    .people__movies {
-      display: flex;
-      flex-wrap: wrap;
-
-      p {
-        margin-right: 8px;
-      }
-    }
-  }
+  
 }
 
 .pagination {

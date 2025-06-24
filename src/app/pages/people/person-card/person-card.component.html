@@ -1,0 +1,16 @@
+
+
+<div class="person__card">    
+      <img
+        [src]="getProfileImage()"
+        alt="{{ person.name }}"
+      />
+     
+    <h3>{{ person.name }}</h3>
+    <div class="known-for">
+        @for (item of person.known_for; track $index) {
+            <span>{{item.title || item.name}}</span>
+        }
+    </div>
+  </div>
+

@@ -1,0 +1,22 @@
+.person-details {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+  
+    .person-photo {
+      width: 300px;
+      border-radius: 10px;
+    }
+  
+    .info {
+      flex: 1;
+      .subtle {
+        color: #999;
+        margin-bottom: 0.5rem;
+      }
+      .bio {
+        margin-top: 1rem;
+        line-height: 1.6;
+      }
+    }
+  }

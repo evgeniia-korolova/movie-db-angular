@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { PeopleService } from '../../services/people.service';
+import { PersonCardComponent } from './person-card/person-card.component';
+import { IPersonListItem } from '../../core/models/people/person-list-item.model';
 import { NgFor, NgIf } from '@angular/common';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-people',
-  imports: [NgFor, NgIf],
+  imports: [PersonCardComponent, NgFor, NgIf, RouterLink, RouterOutlet],
   templateUrl: './people.component.html',
   styleUrl: './people.component.scss',
 })
