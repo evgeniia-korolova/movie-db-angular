@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IPersonListItem } from '../../../core/models/people/person-list-item.model';
+import { IPersonListItem } from '../../../core/interfaces/people/person.interface';
 
 @Component({
   selector: 'app-person-card',

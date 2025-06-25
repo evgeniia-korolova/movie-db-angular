@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RatingBadgeComponent } from '../../../shared/rating-badge/rating-badge.component';
-import { TrendingMoviesService } from '../../../services/trending-movies.service';
+import { TrendingMoviesService } from '../../../services/movies/trending-movies.service';
 
 @Component({
   selector: 'app-trending',

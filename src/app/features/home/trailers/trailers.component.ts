@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TrailersService } from '../../../services/trailers.service';
+import { TrailersService } from '../../../services/movies/trailers.service';
 import { TitleCasePipe } from '@angular/common';
 import { forkJoin, map, Observable, switchMap, tap } from 'rxjs';
 import { IMovieWithTrailer } from '../../../core/interfaces/movie';

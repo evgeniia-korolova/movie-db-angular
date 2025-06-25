@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PeopleService } from '../../services/people.service';
+import { PeopleService } from '../../services/people/people.service';
 import { PersonCardComponent } from './person-card/person-card.component';
-import { IPersonListItem } from '../../core/models/people/person-list-item.model';
+import { IPersonListItem } from '../../core/interfaces/people/person.interface';
 import { NgFor, NgIf } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
@@ -23,11 +23,10 @@ export class PeopleComponent implements OnInit {
   }
 
   loadPeople(): void {
-    this.peopleService.getPeople(this.currentPage).subscribe((data) => {
+    this.peopleService.getPeople(this.currentPage).subscribe((data) => {     
       this.people = data.results;
       this.totalPages = data.total_pages;
-      console.log(this.people);
-      
+      console.log(this.people);      
     });
   }
 

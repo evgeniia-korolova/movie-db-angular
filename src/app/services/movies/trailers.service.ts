@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map, Observable, switchMap } from 'rxjs';
-import { environment } from '../../environments/environments';
-import { IMovie, IMovieWithTrailer } from '../core/interfaces/movie';
+import { environment } from '../../../environments/environments';
+import { IMovie, IMovieWithTrailer } from '../../core/interfaces/movie';
 
 @Injectable({
   providedIn: 'root',

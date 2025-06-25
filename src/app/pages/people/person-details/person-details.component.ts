@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IPersonDetails } from '../../../core/models/people/person-details.model';
-import { PersonDetailsService } from '../../../services/person-details.service';
+import { PersonDetailsService } from '../../../services/people/person-details.service';
+import { IPersonDetails } from '../../../core/interfaces/people/person.interface';
+import { IKnownForItem } from '../../../core/interfaces/people/known-for-item.interface';
+import { KnownForService } from '../../../services/people/known-for.service';
 
 @Component({
   selector: 'app-person-details',
@@ -11,10 +13,31 @@ import { PersonDetailsService } from '../../../services/person-details.service';
 })
 export class PersonDetailsComponent {
   person!: IPersonDetails;
+  isBioExpanded = false;
+  imageUrl = 'https://image.tmdb.org/t/p/w500';
+  fallback = 'user-profile-img.svg';
+  knownFor: IKnownForItem[] = [];
+
+  knownForService = inject(KnownForService)
+
   constructor(
     private route: ActivatedRoute,
     private personDetailsService: PersonDetailsService
+    
   ) {}
+
+  getGender(code: number): string {
+    switch (code) {
+      case 1:
+        return 'Female';
+      case 2:
+        return 'Male';
+      default:
+        return '—';
+    }
+  }
+
+  
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -23,5 +46,9 @@ export class PersonDetailsComponent {
 
       this.person = data;
     });
+
+    this.knownForService.getKnownFor(id).subscribe((data) => {
+      this.knownFor = data
+    })
   }
 }

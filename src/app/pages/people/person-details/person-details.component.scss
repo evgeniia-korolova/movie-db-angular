@@ -1,22 +1,151 @@
-.person-details {
-    display: flex;
-    gap: 2rem;
-    padding: 2rem;
-  
-    .person-photo {
-      width: 300px;
-      border-radius: 10px;
+.person-page {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+  width: 100%;
+
+  aside {
+    width: 25%;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
     }
-  
-    .info {
-      flex: 1;
-      .subtle {
-        color: #999;
+
+    .personal-info {
+      margin-top: 1.5rem;
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 8px;
+
+      h4 {
         margin-bottom: 0.5rem;
+        color: #333;
       }
-      .bio {
-        margin-top: 1rem;
-        line-height: 1.6;
+
+      p {
+        font-size: 0.95rem;
+        margin: 0.25rem 0;
       }
     }
   }
+
+  .person-content {
+    flex-grow: 1;
+    width: calc(75% - 2rem);
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .biography {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.6;
+      max-height: 12rem;
+      overflow: hidden;
+      position: relative;
+
+      &.expanded {
+        max-height: none;
+      }
+
+      &:not(.expanded)::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3rem;
+        background: linear-gradient(to bottom, transparent, #fff);
+      }
+    }
+
+    .read-more {
+      margin-top: 0.5rem;
+      background: none;
+      border: none;
+      color: #01b4e4;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .known-for {
+      margin-top: 2rem;
+
+      h3 {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
+.slider {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: #cac8c8 #f1f1f1;
+}
+.slider::-webkit-scrollbar {
+  height: 2.5rem;
+}
+
+.slider::-webkit-scrollbar-thumb {
+  background: #e9e7e7;
+  border-radius: 5px;
+}
+
+.slider::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.slider-track {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+
+  .known-for-card {
+    width: 130px;
+    flex: 0 0 auto;
+
+    img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      aspect-ratio: 2/3;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      white-space: wrap;
+    }
+  }
+}
+
+@media (max-width: 620px) {
+  .person-page {
+    flex-direction: column;
+    
+    aside,
+    .person-content {
+      width: 100%;
+    }
+  }
+
+
+  .slider {
+    max-width: 100%;
+  }
+}

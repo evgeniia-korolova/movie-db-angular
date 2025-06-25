@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FreeToWatchService } from '../../../services/free-to-watch.service';
+import { FreeToWatchService } from '../../../services/movies/free-to-watch.service';
 import { RatingBadgeComponent } from '../../../shared/rating-badge/rating-badge.component';
 
 @Component({

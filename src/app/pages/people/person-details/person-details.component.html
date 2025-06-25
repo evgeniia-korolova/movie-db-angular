@@ -1,24 +1,55 @@
-<section class="person-details" >
-    @if (person) {
-        @if(person.profile_path) {
-            
+<section class="person-page">
+  <aside>
+    @if (person) { @if(person.profile_path) {
 
+    <img
+      class="person-photo"
+      [src]="'https://image.tmdb.org/t/p/w500' + person.profile_path"
+      [alt]="person.name"
+    />
+    } @else {
+    <img src="user-profile-img.svg" alt="{{ person.name }}" />
+    } }
+
+    <div class="personal-info">
+      @if (person) {
+      <h4>Personal Info</h4>
+      <p><strong>Known For:</strong> {{ person.known_for_department }}</p>
+      <p><strong>Gender:</strong> {{ getGender(person.gender) }}</p>
+
+      <p><strong>Birthday:</strong> {{ person.birthday || "—" }}</p>
+      <p><strong>Place of Birth:</strong> {{ person.place_of_birth || "—" }}</p>
+      }
+    </div>
+  </aside>
+
+  <div class="person-content">
+    @if (person) {
+    <h1>{{ person.name }}</h1>
+    <div class="biography" [class.expanded]="isBioExpanded">
+      {{ person.biography }}
+    </div>
+    @if (!isBioExpanded) {
+    <button class="read-more" (click)="isBioExpanded = true">Read More</button>
+    } 
+  }
+     @if (knownFor.length > 0) {
+    <div class="known-for">
+      <h3>Known For</h3>
+      <div class="slider">
+        <div class="slider-track">
+          @for (item of knownFor; track $index) {
+          <div class="known-for-card">
             <img
-          class="person-photo"
-          [src]="'https://image.tmdb.org/t/p/w500' + person.profile_path"
-            
-          [alt]="person.name">
-        } @else {
-            <img src="user-profile-img.svg" alt="{{person.name}}">
-        }
-    
-  
-    <div class="info">
-      <h2>{{ person.name }}</h2>
-      <p class="subtle">Born: {{ person.birthday || 'Unknown' }}</p>
-      <p class="subtle">From: {{ person.place_of_birth || 'Unknown' }}</p>
-      <p class="bio">{{ person.biography || 'No biography available.' }}</p>
+              [src]="imageUrl + item.poster_path"
+              alt="{{ item.title || item.name }}"
+            />
+            <p>{{ item.title || item.name }}</p>
+          </div>
+          }
+        </div>
+      </div>
     </div>
     }
-    
-  </section>
+  </div>
+</section>

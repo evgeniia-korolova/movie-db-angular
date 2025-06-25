@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PopularMoviesService } from '../../../services/popular-movies.service';
+import { PopularMoviesService } from '../../../services/movies/popular-movies.service';
 import { RatingBadgeComponent } from '../../../shared/rating-badge/rating-badge.component';
 
 @Component({
