@@ -12,7 +12,7 @@ import { IMovieWithTrailer } from '../../../core/interfaces/movie';
 })
 export class TrailersComponent implements OnInit {
   @Input() initialCategory: string = 'latest-trailers';
-  latestTrailers: IMovieWithTrailer[] = [];
+  latestTrailers: any[] = [];
   activeCategory = this.initialCategory;
 
   categories = [
@@ -22,22 +22,21 @@ export class TrailersComponent implements OnInit {
     { label: 'On TV', value: 'on-tv' },
     { label: 'For Rent', value: 'for-rent' },
   ];
-  moviesWithTrailers: unknown;
+ 
 
   constructor(private trailerService: TrailersService) {}
 
   ngOnInit(): void {
     this.loadMovies(this.initialCategory);
-    // this.loadLatestTrailers();
   }
 
   loadLatestTrailers(): void {
-    this.trailerService
-      .getLatestTrailers()
-      .subscribe((movies: IMovieWithTrailer[]) => {
-        this.latestTrailers = movies;
-        this.activeCategory = 'latest-trailers';
-      });
+    this.trailerService.getLatestTrailers().subscribe((movies: any[]) => {
+      this.latestTrailers = movies;
+      console.log(this.latestTrailers);
+
+      this.activeCategory = 'latest-trailers';
+    });
   }
 
   loadMovies(category: string) {
@@ -49,7 +48,13 @@ export class TrailersComponent implements OnInit {
       this.latestTrailers = res.results;
 
       this.latestTrailers.forEach((movie) => {
-        this.trailerService.getMovieTrailer(movie.id).subscribe((key) => {
+        const isTV = movie.media_type === 'tv' || 'first_air_date' in movie;
+
+        const trailer$ = isTV
+          ? this.trailerService.getTVTrailer(movie.id)
+          : this.trailerService.getMovieTrailer(movie.id);
+
+        trailer$.subscribe((key) => {
           movie.trailerKey = key;
         });
       });
@@ -60,3 +65,4 @@ export class TrailersComponent implements OnInit {
     window.open(`https://www.youtube.com/watch?v=${key}`, '_blank');
   }
 }
+

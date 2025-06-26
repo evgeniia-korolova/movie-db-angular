@@ -3,6 +3,14 @@ import { Injectable } from '@angular/core';
 import { forkJoin, map, Observable, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environments';
 import { IMovie, IMovieWithTrailer } from '../../core/interfaces/movie';
+import {
+  IMovieCard,
+  IMovieResponse,
+} from '../../core/interfaces/movies/movie.interface';
+import {
+  ILatestTrailersResponse,
+  IVideoResponse,
+} from '../../core/interfaces/movies/video.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,16 +19,16 @@ export class TrailersService {
   private baseUrl = environment.BASE_URL;
   private apiKey = environment.API_KEY;
 
-  private apiUrl = `${environment.BASE_URL}/movie/popular?api_key=${environment.API_KEY}`;
-
   constructor(private http: HttpClient) {}
 
   getLatestTrailers(): Observable<IMovieWithTrailer[]> {
     const url = `${this.baseUrl}/movie/upcoming?api_key=${this.apiKey}&region=US`;
 
-    return this.http.get<{ results: IMovie[] }>(url).pipe(
+    return this.http.get<{ results: IMovieWithTrailer[] }>(url).pipe(
       switchMap((res) => {
         const movies = res.results;
+        console.log(movies);
+
         const requests: Observable<IMovieWithTrailer>[] = movies.map((movie) =>
           this.getMovieTrailer(movie.id).pipe(
             map((trailerKey) => ({
@@ -31,7 +39,7 @@ export class TrailersService {
         );
         return forkJoin(requests);
       }),
-      map((moviesWithTrailers: IMovieWithTrailer[]) =>
+      map((moviesWithTrailers) =>
         moviesWithTrailers.filter((movie) => movie.trailerKey)
       )
     );
@@ -47,7 +55,7 @@ export class TrailersService {
     return date.toISOString().split('T')[0];
   }
 
-  getMoviesByCategory(category: string): Observable<any> {
+  getMoviesByCategory(category: string): Observable<IMovieResponse> {
     let url = `${this.baseUrl}/discover/movie?api_key=${this.apiKey}&sort_by=popularity.desc`;
 
     switch (category) {
@@ -74,7 +82,7 @@ export class TrailersService {
         break;
     }
 
-    return this.http.get<any>(url);
+    return this.http.get<IMovieResponse>(url);
   }
 
   getMovieTrailer(movieId: number): Observable<string | null> {

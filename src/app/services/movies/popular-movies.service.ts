@@ -2,6 +2,7 @@ import { Injectable, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environments';
 import { HttpClient } from '@angular/common/http';
+import { IMovieResponse } from '../../core/interfaces/movies/movie.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class PopularMoviesService {
 
   constructor(private http: HttpClient) { }
 
-  getPopularByCategory(category: string): Observable<any> {
+  getPopularByCategory(category: string): Observable<IMovieResponse> {
     let url = '';
     let params = '';
   
@@ -44,6 +45,6 @@ export class PopularMoviesService {
         url = `${this.baseUrl}/discover/movie?api_key=${this.apiKey}`;
     }
   
-    return this.http.get<any>(url + params);
+    return this.http.get<IMovieResponse>(url + params);
   }
 }

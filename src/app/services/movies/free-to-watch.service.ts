@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environments';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { IMovieCard, IMovieResponse } from '../../core/interfaces/movies/movie.interface';
+import { IVideoResponse } from '../../core/interfaces/movies/video.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -31,12 +33,7 @@ export class FreeToWatchService {
         default:
           url = `${this.baseUrl}/movie/top_rated?api_key=${this.apiKey}`
     }
-    return this.http.get<any>(url + params);
+    return this.http.get<IMovieResponse>(url + params);
   }
-
-  getFreeToWatch(): Observable<any> {
-    return this.http.get<any>(
-      `${this.baseUrl}/movie/top_rated?api_key=${this.apiKey}`
-    );
-  }
+  
 }

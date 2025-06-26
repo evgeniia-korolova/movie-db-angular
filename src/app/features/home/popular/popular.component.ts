@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PopularMoviesService } from '../../../services/movies/popular-movies.service';
 import { RatingBadgeComponent } from '../../../shared/rating-badge/rating-badge.component';
+import { IMovieCard } from '../../../core/interfaces/movies/movie.interface';
 
 @Component({
   selector: 'app-popular-movies',
@@ -9,7 +10,7 @@ import { RatingBadgeComponent } from '../../../shared/rating-badge/rating-badge.
   styleUrls: ['./popular.component.scss', '../home.component.scss']
 })
 export class PopularMoviesComponent implements OnInit {
-  popularMovies: any[] = [];
+  popularMovies: IMovieCard[] = [];
   selectedCategory = 'streaming';
 
   categories = [

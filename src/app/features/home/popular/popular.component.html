@@ -28,8 +28,8 @@
           ></app-rating-badge>
         </div>
         <div class="movie-card__info">
-          <h3>{{ movie.title }}</h3>
-          <h3>{{ movie.release_date }}</h3>
+          <h3>{{ movie.title || movie.name}}</h3>
+          <h3>{{ movie.release_date || movie.first_air_date}}</h3>
         </div>
       </div>
       }

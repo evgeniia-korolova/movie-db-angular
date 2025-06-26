@@ -18,8 +18,8 @@ export class KnownForService {
     return this.http.get<any>(url).pipe(
       map((res) => {
         return res.cast
-          .filter((item: any) => item.poster_path) // отсекаем без постеров
-          .sort((a: any, b: any) => b.popularity - a.popularity) // по популярности
+          .filter((item: any) => item.poster_path) 
+          .sort((a: any, b: any) => b.popularity - a.popularity) 
           .slice(0, 10); // топ-10
       })
     );

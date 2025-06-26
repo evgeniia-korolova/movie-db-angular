@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FreeToWatchService } from '../../../services/movies/free-to-watch.service';
 import { RatingBadgeComponent } from '../../../shared/rating-badge/rating-badge.component';
+import { IMovieCard } from '../../../core/interfaces/movies/movie.interface';
 
 @Component({
   selector: 'app-free-to-watch',
@@ -11,7 +12,7 @@ import { RatingBadgeComponent } from '../../../shared/rating-badge/rating-badge.
 export class FreeToWatchComponent implements OnInit {
   @Input() voteAverage: number = 0;
 
-  freeToWatch: any[] = [];
+  freeToWatch: IMovieCard[] = [];
   selectedCategory = 'movies';
   categories = [
     { label: 'Movies', value: 'movies' },
@@ -25,6 +26,7 @@ export class FreeToWatchComponent implements OnInit {
     this.freeToWatchService
       .getFreeToWatchByCategory(category)
       .subscribe((data) => {
+        
         this.freeToWatch = data.results;
       });
   }
