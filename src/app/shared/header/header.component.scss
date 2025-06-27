@@ -24,6 +24,10 @@
         display: block;
       }
     }
+
+    .auth {
+      margin-left: auto;
+    }
   }
   
   .auth-btn {
@@ -33,4 +37,5 @@
     border: none;
     background: transparent;
     color: #fff;
+    text-decoration: none;
   }

@@ -7,5 +7,13 @@
     <a routerLink="/movies">Movies</a>
     <a routerLink="/person">People</a>
   </nav>
-  <button class="auth-btn">Login</button>
+  <div class="auth">
+    @if (authService.isAuthenticated()) {
+      <button (click)="logout()" class="auth-btn">Logout</button>
+    } @else {
+      <a routerLink="/login" class="auth-btn">Login</a>
+      <a routerLink="/registration" class="auth-btn">Register</a>
+    }
+  </div>
+  <!-- <button class="auth-btn">Login</button> -->
 </header>

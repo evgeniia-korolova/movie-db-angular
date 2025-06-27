@@ -1,0 +1,36 @@
+<div class="auth-container">
+  <h2>Create an Account</h2>
+
+  <form novalidate [formGroup]="registrationForm" (click)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" formControlName="name" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" formControlName="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        formControlName="password"
+      />
+    </div>
+
+    <button type="submit" [disabled]="!registrationForm.valid">Register</button>
+
+    <p class="login-link">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </p>
+
+    @if (errorMessage) {
+    <p class="error">{{ errorMessage }}</p>
+    }
+  </form>
+</div>
