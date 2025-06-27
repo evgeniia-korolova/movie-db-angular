@@ -26,8 +26,7 @@ export class TrailersService {
 
     return this.http.get<{ results: IMovieWithTrailer[] }>(url).pipe(
       switchMap((res) => {
-        const movies = res.results;
-        console.log(movies);
+        const movies = res.results;        
 
         const requests: Observable<IMovieWithTrailer>[] = movies.map((movie) =>
           this.getMovieTrailer(movie.id).pipe(

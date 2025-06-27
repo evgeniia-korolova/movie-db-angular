@@ -16,25 +16,28 @@
   <div class="slider">
     <div class="slider-track">
       @for (movie of popularMovies; track $index) {
-      <div class="movie-card">
-        <div class="movie-card__poster">
-          <img
-            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-            alt="{{ movie.title }}"
-          />
+        @if (movie) {
 
-          <div class="vote-average__wrapper">
-            <app-rating-badge
-              [voteAverage]="movie.vote_average"
-            ></app-rating-badge>
-            
+          <div class="movie-card" (click)="goToMovieDetails(movie.id)">
+            <div class="movie-card__poster">
+              <img
+                [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+                alt="{{ getTitle(movie)}}"
+              />
+    
+              <div class="vote-average__wrapper">
+                <app-rating-badge
+                  [voteAverage]="movie.vote_average"
+                ></app-rating-badge>
+                
+              </div>
+            </div>
+            <div class="movie-card__info">
+              <h3>{{ getTitle(movie)}}</h3>
+              <h3>{{ getDate(movie)}}</h3>
+            </div>
           </div>
-        </div>
-        <div class="movie-card__info">
-          <h3>{{ movie.title || movie.name}}</h3>
-          <h3>{{ movie.release_date || movie.first_air_date}}</h3>
-        </div>
-      </div>
+        }
       }
     </div>
   </div>

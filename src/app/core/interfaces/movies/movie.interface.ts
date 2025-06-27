@@ -1,16 +1,17 @@
+import { ITVCard } from "../tv/tv.interface";
 
 export interface IMovieBase {
   id: number;
-  title: string;
-  name?: string;
+  title?: string;
+  // name?: string;
   original_title: string;
   original_language?: string;
   overview: string;
   poster_path?: string;
   backdrop_path?: string | null;
   release_date: string;
-  first_air_date?: string;
-  media_type?: string;
+  // first_air_date?: string;
+  // media_type?: string;
   vote_average: number;
   vote_count: number;
   genre_ids?: number[];
@@ -52,4 +53,4 @@ export interface IMovieWithTrailer extends IMovieCard {
   trailerKey: string | null;
 }
 
-
+export type IContentCard = IMovieCard | ITVCard;

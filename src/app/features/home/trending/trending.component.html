@@ -27,7 +27,7 @@
           <div class="movie-card__poster">
             <img
               [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-              alt="{{ movie.title || movie.name }}"
+              alt="{{ getTitle(movie) }}"
             />
 
             <div class="vote-average__wrapper">
@@ -36,8 +36,8 @@
            
           </div>
           <div class="movie-card__info">
-            <h3>{{ movie.title || movie.name }}</h3>
-            <h3>{{ movie.release_date }}</h3>
+            <h3>{{ getTitle(movie) }}</h3>
+            <h3>{{ getDate(movie) }}</h3>
           </div>
         </div>
         }
