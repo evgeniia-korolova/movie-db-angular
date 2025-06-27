@@ -1,19 +1,20 @@
-
 <header class="header">
   <nav class="nav">
-    <a routerLink="./" >
-        <img src="logo.svg" alt="move-app-logo">
+    <a routerLink="./">
+      <img src="logo.svg" alt="move-app-logo" />
     </a>
     <a routerLink="/movies">Movies</a>
     <a routerLink="/person">People</a>
   </nav>
   <div class="auth">
     @if (authService.isAuthenticated()) {
-      <button (click)="logout()" class="auth-btn">Logout</button>
+    <button (click)="logout()" class="auth-btn">Logout</button>
+    <a routerLink="/favorites">
+      <app-favorite-icon [filled]="hasFavorites"></app-favorite-icon>
+    </a>
     } @else {
-      <a routerLink="/login" class="auth-btn">Login</a>
-      <a routerLink="/registration" class="auth-btn">Register</a>
+    <a routerLink="/login" class="auth-btn">Login</a>
+    <a routerLink="/registration" class="auth-btn">Register</a>
     }
   </div>
-  <!-- <button class="auth-btn">Login</button> -->
 </header>

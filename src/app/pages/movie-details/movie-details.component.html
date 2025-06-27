@@ -1,31 +1,35 @@
 <article class="movie-details">
   @if (movie) {
-  <section class="hero">    
+  <section class="hero">
     <div class="hero__poster">
-      <img [src]="imageUrl + movie.poster_path" [alt]="movie.title" />
+      <img [src]="imageUrl + movie.poster_path" [alt]="movie.id" />
     </div>
 
     <div class="hero__info">
-      <h1 class="movie-title">{{ movie.title }}</h1>
+      @if (isMovieDetails(movie)) {
+      {{ movie.title }}
+      } @else if (isTVDetails(movie)) {
+      {{ movie.name }}
+      }
+
       <p class="movie-tagline">{{ movie.tagline }}</p>
 
       <div class="hero__vote-average">
         <app-rating-badge [voteAverage]="movie.vote_average" />
         <p>User Score</p>
+        <app-favorite-icon
+          [filled]="isFavorite()"
+          (click)="toggleFavorite()"
+        ></app-favorite-icon>
       </div>
 
-      <!-- Краткое описание -->
       <p class="overview">{{ movie.overview }}</p>
 
-      <!-- Дополнительные кнопки -->
       <div class="movie-actions">
         <button class="btn">Watch Trailer</button>
-        <button class="btn">Add to Favorites</button>
       </div>
     </div>
   </section>
-
- 
 
   <section class="credits">
     <!-- Основной состав -->
@@ -38,5 +42,5 @@
   <section class="recommendations">
     <!-- Похожие фильмы -->
   </section>
-}
+  }
 </article>

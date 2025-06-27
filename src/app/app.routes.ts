@@ -9,6 +9,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MainLayoutComponent } from './core/layouts/main-layout/main-layout.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
 import { RegistrationComponent } from './pages/auth/registration/registration.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 
 
@@ -19,9 +20,10 @@ export const routes: Routes = [
       children: [
         { path: '', redirectTo: 'movie', pathMatch: 'full' },
         { path: 'movie', component: HomeComponent }, 
-        { path: 'movie/:id', component: MovieDetailsComponent },       
+        { path: 'details/:type/:id', component: MovieDetailsComponent },       
         { path: 'person', component: PeopleComponent },
         { path: 'person/:id', component: PersonDetailsComponent },
+        { path: 'favorites', component: FavoritesComponent }
       ]
     },
     {

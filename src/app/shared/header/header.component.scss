@@ -25,9 +25,13 @@
       }
     }
 
-    .auth {
-      margin-left: auto;
-    }
+    
+  }
+
+  .auth {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
   }
   
   .auth-btn {

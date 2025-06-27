@@ -24,14 +24,24 @@ export class PopularMoviesComponent implements OnInit {
     { label: 'For Rent', value: 'for-rent' },
   ];
 
-  constructor(private popularMoviesService: PopularMoviesService, private router: Router) {}
+  constructor(
+    private popularMoviesService: PopularMoviesService,
+    private router: Router
+  ) {}
 
   loadPopularMovies(category: string): void {
     this.selectedCategory = category;
+
+    const mediaType = category === 'on-tv' ? 'tv' : 'movie';
+
     this.popularMoviesService
       .getPopularByCategory(category)
       .subscribe((data) => {
-        this.popularMovies = data.results;
+        this.popularMovies = data.results.map((item: any) => ({
+          ...item,
+          media_type: mediaType,
+        }));
+
         console.log(this.popularMovies);
       });
   }
@@ -42,17 +52,15 @@ export class PopularMoviesComponent implements OnInit {
     } else {
       return (card as IMovieCard).title ?? '';
     }
-  }  
-  
-  
+  }
+
   getDate(card: IContentCard): string {
     return 'release_date' in card ? card.release_date : card.first_air_date;
-  } 
-
-  goToMovieDetails(id: number): void {
-    this.router.navigate(['/movie', id]);
   }
-  
+
+  goToMovieDetails(card: IContentCard): void {
+    this.router.navigate(['/details', card.media_type, card.id]);
+  }
 
   ngOnInit(): void {
     this.loadPopularMovies(this.selectedCategory);

@@ -1,4 +1,4 @@
-import { ITVCard } from "../tv/tv.interface";
+import { ITVCard, ITVDetails } from "../tv/tv.interface";
 
 export interface IMovieBase {
   id: number;
@@ -54,3 +54,5 @@ export interface IMovieWithTrailer extends IMovieCard {
 }
 
 export type IContentCard = IMovieCard | ITVCard;
+export type IContentDetails = IMovieDetails | ITVDetails;
+

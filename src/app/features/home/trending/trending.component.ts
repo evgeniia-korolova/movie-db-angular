@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RatingBadgeComponent } from '../../../shared/rating-badge/rating-badge.component';
 import { TrendingMoviesService } from '../../../services/movies/trending-movies.service';
-import { IContentCard, IMovieCard } from '../../../core/interfaces/movies/movie.interface';
+import {
+  IContentCard,
+  IMovieCard,
+} from '../../../core/interfaces/movies/movie.interface';
 import { Router } from '@angular/router';
 import { ITVCard } from '../../../core/interfaces/tv/tv.interface';
 
@@ -15,7 +18,10 @@ export class TrendingComponent implements OnInit {
   trendingMovies: IContentCard[] = [];
   selectedTime: 'day' | 'week' = 'day';
 
-  constructor(private trendingMoviesService: TrendingMoviesService, private router: Router) {}
+  constructor(
+    private trendingMoviesService: TrendingMoviesService,
+    private router: Router
+  ) {}
 
   onTimeChange(time: 'day' | 'week') {
     this.selectedTime = time;
@@ -28,9 +34,8 @@ export class TrendingComponent implements OnInit {
     } else {
       return (card as IMovieCard).title ?? '';
     }
-  }  
-  
-  
+  }
+
   getDate(card: IContentCard): string {
     return 'release_date' in card ? card.release_date : card.first_air_date;
   }
@@ -43,9 +48,8 @@ export class TrendingComponent implements OnInit {
       });
   }
 
-  
-  goToMovieDetails(id: number): void {
-    this.router.navigate(['/movie', id]);
+  goToMovieDetails(card: IContentCard): void {
+    this.router.navigate(['/details', card.media_type, card.id]);
   }
 
   ngOnInit(): void {

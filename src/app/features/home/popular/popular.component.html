@@ -18,7 +18,7 @@
       @for (movie of popularMovies; track $index) {
         @if (movie) {
 
-          <div class="movie-card" (click)="goToMovieDetails(movie.id)">
+          <div class="movie-card" (click)="goToMovieDetails(movie)">
             <div class="movie-card__poster">
               <img
                 [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
