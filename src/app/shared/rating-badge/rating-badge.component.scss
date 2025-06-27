@@ -1,22 +1,9 @@
-.vote-average {
-  position: absolute;
-  bottom: -20px;
-  left: 20px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .vote-container {
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  bottom: -20px;
-  left: 20px;
+  align-items: center;  
   width: 40px;
   height: 40px;
   border-radius: 50%;

@@ -4,6 +4,7 @@ import { TrendingComponent } from './trending/trending.component';
 import { PopularMoviesComponent } from './popular/popular.component';
 import { FreeToWatchComponent } from './free-to-watch/free-to-watch.component';
 
+
 @Component({
   selector: 'app-home',
   imports: [
@@ -15,4 +16,6 @@ import { FreeToWatchComponent } from './free-to-watch/free-to-watch.component';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  
+}

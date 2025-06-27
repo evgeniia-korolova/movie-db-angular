@@ -25,8 +25,7 @@ export class PeopleComponent implements OnInit {
   loadPeople(): void {
     this.peopleService.getPeople(this.currentPage).subscribe((data) => {     
       this.people = data.results;
-      this.totalPages = data.total_pages;
-      console.log(this.people);      
+      this.totalPages = data.total_pages;           
     });
   }
 
