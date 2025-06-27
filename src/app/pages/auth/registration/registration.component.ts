@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registration',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './registration.component.html',
-  styleUrl: './registration.component.scss'
+  styleUrl: '../auth.scss'
 })
-export class RegistrationComponent {
+export class RegistrationComponent { 
 
   errorMessage = '';
   constructor(private auth: AuthService, private router: Router) {}
@@ -37,5 +37,5 @@ export class RegistrationComponent {
       
       this.errorMessage = 'User with this email already exists.';
     }
-  }
+  }  
 }
