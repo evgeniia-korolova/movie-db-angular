@@ -1,0 +1,24 @@
+.favorite__wrapper {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .inactive-icon {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  
+  .custom-tooltip {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(3, 37, 65, 1);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  

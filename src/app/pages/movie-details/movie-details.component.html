@@ -18,24 +18,12 @@
         <app-rating-badge [voteAverage]="movie.vote_average" />
         <p>User Score</p>
 
-        <div
-          class="favorite__wrapper"
-          (mouseenter)="showTooltip = true"
-          (mouseleave)="showTooltip = false" 
-          [class.inactive]="!authService.isAuthenticated()"        
-        >
-          <app-favorite-icon
-            [filled]="isFavorite()"
-            (click)="toggleFavorite()"
-            [class.inactive-icon]="!authService.isAuthenticated()" 
-
-          ></app-favorite-icon>
-
-          @if(!authService.isAuthenticated() && showTooltip) {
-            <div class="custom-tooltip">Please log in to add to Favorites</div>
-          }
-        </div>
-
+        <app-favorite-toggle
+          [id]="movie.id"
+          [media_type]="'movie'"
+          [title]="title"
+          [poster_path]="movie.poster_path"
+        />
       </div>
 
       <p class="hero__overview">{{ movie.overview }}</p>

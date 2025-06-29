@@ -70,37 +70,4 @@
   }
 }
 
-.favorite__wrapper {
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  align-items: center;  
-}
-
-.custom-tooltip {
-  position: absolute;
-  top: 100%;
-  left: 50%;  
-  transform: translateX(-50%);
-  background-color: rgba(3, 37, 65, 1);;
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 16px;
-  white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  z-index: 10;
-  
-}
-
-.inactive {    
-  cursor: default;  
-}
-
-.inactive-icon {
-  pointer-events: none;
-  opacity: 0.5;
-  cursor: default;
-}
-
 

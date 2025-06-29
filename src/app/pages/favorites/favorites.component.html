@@ -1,1 +1,7 @@
-<p>favorite works!</p>
+<div class="favorites__wrapper">
+    @for (item of favorites; track $index) {
+        <app-favorite-card [item]="item"></app-favorite-card>
+    }
+</div>
+  
+  

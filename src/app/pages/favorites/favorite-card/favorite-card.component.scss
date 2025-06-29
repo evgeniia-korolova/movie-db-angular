@@ -1,0 +1,18 @@
+.favorite-card {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  position: relative;
+}
+
+.favorite-card__poster {
+  border-radius: 8px;
+  width: 100%;
+}
+
+.favorite-card__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}

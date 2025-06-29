@@ -9,10 +9,11 @@ import { IContentDetails } from '../../core/interfaces/movies/movie.interface';
 import { isMovieCard, isMovieDetails,  isTVDetails } from '../../core/utils/content-card.utils';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
+import { FavoriteToggleComponent } from '../favorites/favorite-toggle/favorite-toggle.component';
 
 @Component({
   selector: 'app-movie-details',
-  imports: [RatingBadgeComponent, FavoriteIconComponent],
+  imports: [RatingBadgeComponent,  FavoriteToggleComponent],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.scss',
 })

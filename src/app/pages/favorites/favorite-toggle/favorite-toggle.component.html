@@ -1,0 +1,20 @@
+<div
+  class="favorite__wrapper"
+  (mouseenter)="showTooltip = !authService.isAuthenticated()"
+  (mouseleave)="showTooltip = false"
+>
+  <app-favorite-icon
+    [filled]="isFilled"
+    (click)="toggleFavorite()"
+    [class.inactive-icon]="!authService.isAuthenticated()"
+  />
+    @if(!authService.isAuthenticated() && showTooltip) {
+
+        <div
+          class="custom-tooltip"
+          
+        >
+          Please log in to add to Favorites
+        </div>
+    }
+</div>
