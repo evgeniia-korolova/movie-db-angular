@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieDetailsService } from '../../services/movies/movie-details.service';
 import { RatingBadgeComponent } from '../../shared/rating-badge/rating-badge.component';
@@ -8,6 +8,7 @@ import { IFavoriteItem } from '../../core/interfaces/favorite-item.interface';
 import { IContentDetails } from '../../core/interfaces/movies/movie.interface';
 import { isMovieCard, isMovieDetails,  isTVDetails } from '../../core/utils/content-card.utils';
 import { Observable } from 'rxjs';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -23,6 +24,9 @@ export class MovieDetailsComponent  {
   movie!: IContentDetails;
   isMovieDetails  = isMovieDetails;
   isTVDetails = isTVDetails;
+  showTooltip = false
+
+  authService = inject(AuthService)
 
   imageUrl = 'https://image.tmdb.org/t/p/w500';
 

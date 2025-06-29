@@ -17,10 +17,24 @@
       <div class="hero__vote-average">
         <app-rating-badge [voteAverage]="movie.vote_average" />
         <p>User Score</p>
-        <app-favorite-icon
-          [filled]="isFavorite()"
-          (click)="toggleFavorite()"
-        ></app-favorite-icon>
+        <div
+          class="favorite__wrapper"
+          (mouseenter)="showTooltip = true"
+          (mouseleave)="showTooltip = false" 
+          [class.inactive]="!authService.isAuthenticated()"
+        
+        >
+          <app-favorite-icon
+            [filled]="isFavorite()"
+            (click)="toggleFavorite()"
+            
+
+          ></app-favorite-icon>
+
+          @if(!authService.isAuthenticated() && showTooltip) {
+            <div class="custom-tooltip">Please log in to add to Favorites</div>
+          }
+        </div>
       </div>
 
       <p class="overview">{{ movie.overview }}</p>

@@ -13,8 +13,8 @@
       <app-favorite-icon [filled]="hasFavorites"></app-favorite-icon>
     </a>
     } @else {
-    <a routerLink="/login" class="auth-btn">Login</a>
-    <a routerLink="/registration" class="auth-btn">Register</a>
+    <a routerLink="/login" class="auth-btn" [queryParams]="{ returnUrl: router.url }">Login</a>
+    <a routerLink="/registration" class="auth-btn" [queryParams]="{ returnUrl: router.url }">Register</a>
     }
   </div>
 </header>

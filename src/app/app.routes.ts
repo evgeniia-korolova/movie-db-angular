@@ -1,10 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './features/home/home.component';
 import { AuthLayoutComponent } from './core/layouts/auth-layout/auth-layout.component';
-import { LoginComponent } from './pages/auth/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MainLayoutComponent } from './core/layouts/main-layout/main-layout.component';
-import { RegistrationComponent } from './pages/auth/registration/registration.component';
 
 export const routes: Routes = [
   {
@@ -40,7 +38,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/favorites/favorites.component').then(
             (comp) => comp.FavoritesComponent
-          ),
+          ),          
       },
     ],
   },

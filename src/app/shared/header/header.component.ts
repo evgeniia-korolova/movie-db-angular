@@ -15,9 +15,9 @@ export class HeaderComponent {
 
   constructor(
     public authService: AuthService,
-    private router: Router,
+    public router: Router,
     private favoritesService: FavoritesService,
-    private cd: ChangeDetectorRef
+   
   ) {}
 
   logout() {
@@ -26,11 +26,7 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    // this.hasFavorites = this.favoritesService.getFavorites().length > 0;
-    // this.favoritesService.favoritesChanged$.subscribe(() => {
-    //   this.hasFavorites = this.favoritesService.getFavorites().length > 0;
-    //   this.cd.detectChanges();
-    // });
+    
     this.favoritesService.favoritesChanged$.subscribe((items) => {
       this.hasFavorites = items.length > 0;
     });

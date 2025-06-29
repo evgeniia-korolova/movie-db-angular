@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   private currentUserKey = 'currentUser';
+  private returnUrl: string = '/movie';
+
   constructor() { }  
 
 
@@ -46,5 +48,20 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.currentUserKey);
+    this.resetReturnUrl();
   }
+
+  setReturnUrl(url: string): void {
+    this.returnUrl = url;
+  }
+
+  getReturnUrl(): string {
+    return this.returnUrl;
+  }
+
+  resetReturnUrl(): void {
+    this.returnUrl = '/movie';
+  }
+
+
 }
