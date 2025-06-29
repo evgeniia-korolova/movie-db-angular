@@ -1,1 +1,0 @@
-import{Ca as o,Ua as n,Va as a,eb as i}from"./chunk-WMH4GK37.js";var s=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=o({type:t,selectors:[["app-favorites"]],decls:2,vars:0,template:function(e,r){e&1&&(n(0,"p"),i(1,"favorite works!"),a())},encapsulation:2})};export{s as FavoritesComponent};
