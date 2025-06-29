@@ -50,5 +50,6 @@ export class FavoritesService {
     } else {
       this.addFavorite(item);
     }
-  }
+  }   
+   
 }

@@ -14,20 +14,20 @@
 
       <p class="movie-tagline">{{ movie.tagline }}</p>
 
-      <div class="hero__vote-average">
+      <div class="hero__actions">
         <app-rating-badge [voteAverage]="movie.vote_average" />
         <p>User Score</p>
+
         <div
           class="favorite__wrapper"
           (mouseenter)="showTooltip = true"
           (mouseleave)="showTooltip = false" 
-          [class.inactive]="!authService.isAuthenticated()"
-        
+          [class.inactive]="!authService.isAuthenticated()"        
         >
           <app-favorite-icon
             [filled]="isFavorite()"
             (click)="toggleFavorite()"
-            
+            [class.inactive-icon]="!authService.isAuthenticated()" 
 
           ></app-favorite-icon>
 
@@ -35,9 +35,10 @@
             <div class="custom-tooltip">Please log in to add to Favorites</div>
           }
         </div>
+
       </div>
 
-      <p class="overview">{{ movie.overview }}</p>
+      <p class="hero__overview">{{ movie.overview }}</p>
 
       <div class="movie-actions">
         <button class="btn">Watch Trailer</button>
