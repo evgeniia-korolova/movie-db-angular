@@ -19,11 +19,12 @@
         <p>User Score</p>
 
         <app-favorite-toggle
-          [id]="movie.id"
-          [media_type]="'movie'"
+          [id]="movieId"
+          [media_type]="mediaType"
           [title]="title"
           [poster_path]="movie.poster_path"
         />
+        
       </div>
 
       <p class="hero__overview">{{ movie.overview }}</p>

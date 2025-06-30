@@ -8,13 +8,10 @@
     (click)="toggleFavorite()"
     [class.inactive-icon]="!authService.isAuthenticated()"
   />
-    @if(!authService.isAuthenticated() && showTooltip) {
+  @if(!authService.isAuthenticated() && showTooltip) {
 
-        <div
-          class="custom-tooltip"
-          
-        >
-          Please log in to add to Favorites
-        </div>
-    }
+  <div class="custom-tooltip">Please log in to add to Favorites</div>
+  }
 </div>
+
+<!-- [filled]="isFilled" -->

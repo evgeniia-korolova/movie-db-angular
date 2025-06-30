@@ -1,40 +1,41 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieDetailsService } from '../../services/movies/movie-details.service';
 import { RatingBadgeComponent } from '../../shared/rating-badge/rating-badge.component';
-import { FavoriteIconComponent } from '../../shared/icons/favorite-icon/favorite-icon.component';
-import { FavoritesService } from '../../services/favorites.service';
-import { IFavoriteItem } from '../../core/interfaces/favorite-item.interface';
+
 import { IContentDetails } from '../../core/interfaces/movies/movie.interface';
-import { isMovieCard, isMovieDetails,  isTVDetails } from '../../core/utils/content-card.utils';
+import {
+  isMovieDetails,
+  isTVDetails,
+} from '../../core/utils/content-card.utils';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { FavoriteToggleComponent } from '../favorites/favorite-toggle/favorite-toggle.component';
+import { IFavoriteItem } from '../../core/interfaces/favorite-item.interface';
 
 @Component({
   selector: 'app-movie-details',
-  imports: [RatingBadgeComponent,  FavoriteToggleComponent],
+  imports: [RatingBadgeComponent, FavoriteToggleComponent],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.scss',
 })
-
-
-export class MovieDetailsComponent  {
+export class MovieDetailsComponent implements OnInit {
   movieId!: number;
   mediaType!: 'movie' | 'tv';
   movie!: IContentDetails;
-  isMovieDetails  = isMovieDetails;
-  isTVDetails = isTVDetails;
-  showTooltip = false
+  title = '';
 
-  authService = inject(AuthService)
+  isMovieDetails = isMovieDetails;
+  isTVDetails = isTVDetails;
+  showTooltip = false;
+
+  authService = inject(AuthService);
 
   imageUrl = 'https://image.tmdb.org/t/p/w500';
 
   constructor(
     private route: ActivatedRoute,
-    private movieDetailsService: MovieDetailsService,
-    private favoritesService: FavoritesService
+    private movieDetailsService: MovieDetailsService
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +51,15 @@ export class MovieDetailsComponent  {
     });
   }
 
+  get favoriteItem(): IFavoriteItem {
+    return {
+      id: this.movieId,
+      media_type: this.mediaType,
+      title: this.title,
+      poster_path: this.movie?.poster_path,
+    };
+  }
+
   loadDetails(): void {
     const details$: Observable<IContentDetails> =
       this.mediaType === 'movie'
@@ -58,40 +68,19 @@ export class MovieDetailsComponent  {
 
     details$.subscribe((data: IContentDetails) => {
       this.movie = data;
+
+      if ('title' in data) {
+        this.title = data.title ?? '';
+      } else if ('name' in data) {
+        this.title = data.name ?? '';
+      }
     });
   }
-
-  get title(): string {
-    if (isMovieDetails(this.movie)) return this.movie.title ?? '';
-    if (isTVDetails(this.movie)) return this.movie.name ?? '';
-    return '';
-  }
-  
+ 
 
   get releaseDate(): string {
     if (isMovieDetails(this.movie)) return this.movie.release_date ?? '';
     if (isTVDetails(this.movie)) return this.movie.first_air_date ?? '';
     return '';
   }
-  
-  
-
-  isFavorite(): boolean {
-    return this.favoritesService.isFavorite(this.movieId, this.mediaType);
-  }
-
-  toggleFavorite(): void {
-    const favoriteItem: IFavoriteItem = {
-      id: this.movieId,
-      title: this.title,
-      media_type: this.mediaType,
-      poster_path: this.movie.poster_path,
-    };
-
-    this.favoritesService.toggleFavorite(favoriteItem);
-  }
 }
-
-
-
-
